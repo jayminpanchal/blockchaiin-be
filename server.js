@@ -18,7 +18,7 @@ app.get("/single-block/:hash", (req, res) => {
         }
         return res.json(JSON.parse(body));
       } catch {
-        return res.json({ message: body });
+        return res.status(400).json({ message: body });
       }
     }
   );
@@ -34,7 +34,7 @@ app.get("/single-transaction/:hash", (req, res) => {
         }
         return res.json(JSON.parse(body));
       } catch {
-        return res.json({ message: body });
+        return res.status(400).json({ message: body });
       }
     }
   );
@@ -48,7 +48,7 @@ app.get("/latest-block", (req, res) => {
       }
       return res.json(JSON.parse(body));
     } catch {
-      return res.json({ message: body });
+      return res.status(400).json({ message: body });
     }
   });
 });
