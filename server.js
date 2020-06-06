@@ -12,10 +12,14 @@ app.get("/single-block/:hash", (req, res) => {
   Request.get(
     `${BASE_URL}/rawblock/${req.params.hash}`,
     (error, response, body) => {
-      if (error) {
-        return res.json(error);
+      try {
+        if (error) {
+          return res.json(error);
+        }
+        return res.json(JSON.parse(body));
+      } catch {
+        return res.json({ message: body });
       }
-      return res.json(JSON.parse(body));
     }
   );
 });
@@ -24,20 +28,28 @@ app.get("/single-transaction/:hash", (req, res) => {
   Request.get(
     `${BASE_URL}/rawtx/${req.params.hash}`,
     (error, response, body) => {
-      if (error) {
-        return res.json(error);
+      try {
+        if (error) {
+          return res.json(error);
+        }
+        return res.json(JSON.parse(body));
+      } catch {
+        return res.json({ message: body });
       }
-      return res.json(JSON.parse(body));
     }
   );
 });
 
 app.get("/latest-block", (req, res) => {
   Request.get(`${BASE_URL}/latestblock`, (error, response, body) => {
-    if (error) {
-      return res.json(error);
+    try {
+      if (error) {
+        return res.json(error);
+      }
+      return res.json(JSON.parse(body));
+    } catch {
+      return res.json({ message: body });
     }
-    return res.json(JSON.parse(body));
   });
 });
 
