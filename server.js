@@ -3,7 +3,7 @@ const Request = require("request");
 const cors = require("cors");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 8888;
 app.use(cors());
 
 const BASE_URL = "https://blockchain.info";
